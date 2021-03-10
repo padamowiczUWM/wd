@@ -1,6 +1,6 @@
 import math
 
-# Zadanie 1
+# Zadanie 3
 # Napisz skrypt, który pobiera od użytkownika zdanie i liczy w nim spacje. Wynik wyświetla na ekranie (użyj instrukcji input)
 user_text = input("Wpisz jakieś zdanie: ")
 
@@ -9,7 +9,7 @@ print(user_text.count(' '))
 # Zadanie 4
 # Napisz skrypt, który pobiera od użytkownika liczbę i wypisuje na ekran wartość bezwzględną tej liczby
 
-user_number = input("Wpisz jakąś liczbe: ")
+user_number = int(input("Wpisz jakąś liczbe: "))
 print(math.fabs(user_number))
 
 # Zadanie 5
@@ -19,9 +19,9 @@ print(math.fabs(user_number))
 # oraz czy jednocześnie a>b lub b>c.
 # Jeśli warunki są spełnione lub nie to ma się wyświetlić odpowiedni komunikat na ekranie.
 
-user_a = input("Podaj liczbę a:")
-user_b = input("Podaj liczbę b:")
-user_c = input("Podaj liczbę c:")
+user_a = int(input("Podaj liczbę a:"))
+user_b = int(input("Podaj liczbę b:"))
+user_c = int(input("Podaj liczbę c:"))
 
 if 0 < user_a <= 10 and (user_a > user_b or user_b > user_c):
 	print("Warunki są spełnione.")
@@ -40,7 +40,7 @@ for num in nums:
 # Zadanie 7
 # Napisz pętle, która pobiera liczby od użytkownika i wyświetla ich kwadraty na ekranie.
 for _ in range(10):
-	n = input("Podaj liczbe: ")
+	n = int(input("Podaj liczbe: "))
 	print('Kwadrat liczby {n} to {k}'.format(n=n, k=(n ** 2)))
 
 # Zadanie 8
@@ -50,7 +50,7 @@ lis = list()
 while True:
 	l = input("Wprowadź liczbe: ")
 	lis.append(int(l))
-
+	print(lis)
 
 # Zadanie 9
 # Napisz skrypt, który odczytuje od użytkownika liczbę wielocyfrową i sumuje jej cyfry. Wynik wyświetla na ekranie. Wykorzystaj pętle while.
@@ -59,8 +59,9 @@ big_number = input("Wprowadź liczbe:")
 
 i = 0
 suma = 0
-while len(big_number) == i:
+while len(big_number) != i:
 	suma += int(big_number[i])
+	i += 1
 
 print(suma)
 
