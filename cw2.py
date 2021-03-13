@@ -1,4 +1,5 @@
 import math
+import random
 
 # Zadanie 3
 # Napisz skrypt, który pobiera od użytkownika zdanie i liczy w nim spacje. Wynik wyświetla na ekranie (użyj instrukcji input)
@@ -31,7 +32,8 @@ else:
 # Zadanie 6
 # Napisz pętlę, która wyświetla liczby podzielne przez 5.
 
-nums = [1, 5, 10, 12, 15]
+random.seed()
+nums = random.randint(0, 50)
 
 for num in nums:
 	if num % 5 == 0:
@@ -75,3 +77,30 @@ while tower_size is None or tower_size > 10:
 
 for i in range(tower_size):
 	print("A" * (i + 1))
+
+# Zadanie 11
+# Napisz skrypt, który rysuje diament. Użytkownik podaje wysokość nie mniej jak 3 i nie więcej jak 9 wysokość=3
+
+diamont_height = None
+
+while diamont_height is None or (3 <= diamont_height >= 9):
+	diamont_height = int(input("Wprowadź wysokość diamentu:"))
+
+rage = int((diamont_height - 1) / 2)
+
+size = 1
+for i in range(diamont_height):
+	if i < rage:
+		print(' ' * (rage - i) + '*' * size)
+		size += 2
+	elif i > rage:
+		size -= 2
+		print(' ' * (i - rage) + '*' * size)
+	else:
+		print('*' * diamont_height)
+
+# Zadanie 12
+# Napisz skrypt, który wyświetla i oblicza tabliczkę mnożenia od 1 do 100 w formie znanej z lekcji matematyki w szkole podstawowej.
+
+for i in range(1, 11):
+	print(*("\t{}".format(i * j) for j in range(1, 11)))
