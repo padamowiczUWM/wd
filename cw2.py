@@ -83,7 +83,7 @@ for i in range(tower_size):
 
 diamont_height = None
 
-while diamont_height is None or (3 <= diamont_height >= 9):
+while diamont_height is None or (3 > diamont_height < 9):
 	diamont_height = int(input("Wprowadź wysokość diamentu:"))
 
 rage = int((diamont_height - 1) / 2)
