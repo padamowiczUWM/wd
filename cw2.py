@@ -1,11 +1,19 @@
 import math
 import random
+import sys
 
-# Zadanie 3
+# Zadanie 1
 # Napisz skrypt, który pobiera od użytkownika zdanie i liczy w nim spacje. Wynik wyświetla na ekranie (użyj instrukcji input)
 user_text = input("Wpisz jakieś zdanie: ")
 
 print(user_text.count(' '))
+
+# Zadanie 2
+# Napisz skrypt, który pobiera od użytkownika dwie wartości i mnoży je przez siebie. Wynik wyświetla na ekranie (użyj instrukcji readline() i write()).
+a = int(sys.stdin.readline())
+b = int(sys.stdin.readline())
+
+sys.stdout.write(a * b)
 
 # Zadanie 4
 # Napisz skrypt, który pobiera od użytkownika liczbę i wypisuje na ekran wartość bezwzględną tej liczby
