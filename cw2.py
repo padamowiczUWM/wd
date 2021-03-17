@@ -13,7 +13,7 @@ print(user_text.count(' '))
 a = int(sys.stdin.readline())
 b = int(sys.stdin.readline())
 
-sys.stdout.write(a * b)
+sys.stdout.write("{}".format(a * b))
 
 # Zadanie 4
 # Napisz skrypt, który pobiera od użytkownika liczbę i wypisuje na ekran wartość bezwzględną tej liczby
