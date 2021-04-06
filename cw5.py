@@ -311,7 +311,7 @@ print(next(it))
 # Zaimplementuj sprawdzanie czy przekazany został string jako argument konstruktora tego iteratora (sprawdź funkcję isinstance()).
 class Samogloski:
 	def __init__(self, text):
-		if isinstance(text, str):
+		if not isinstance(text, str):
 			pass
 
 		self.samogloski = ['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y']
