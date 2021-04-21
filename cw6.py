@@ -54,7 +54,9 @@ wek(5)
 # gdzie jedno słowo będzie wypisane w kolumnie, jedno w wierszu i jedno po ukosie.
 # Jedno z tych słów powinno być wypisane od prawej do lewej.
 def wyk():
-	z = np.diag(list('schabowy'))
+	z = np.diag(list("pojazd"))
+	z[1:2] = list("kolory")
+	z[0:3,1] = list("kot")[::-1]
 	print(z)
 
 
@@ -66,11 +68,12 @@ wyk()
 # [[2 4 6]
 #  [4 2 4]
 #  [6 4 2]]
-diag = np.zeros((3, 3))
+diag = np.diag([2, 2, 2])
 
-for i in range(1, 4):
-	x = np.diag([2^i for a in range(3)])
-	diag = diag + x
+for i in range(1, 3):
+	x = np.diag([(i + 1) * 2 for j in range(3 - i)], i)
+	y = np.diag([(i + 1) * 2 for j in range(3 - i)], -i)
+	diag = diag + x + y
 
 print(diag)
 
@@ -84,9 +87,15 @@ print(diag)
 
 def func(tab, kierunek='pion'):
 	if kierunek == 'poziom':
+		if len(tab) == 1:
+			return "Ilość wierszy nie pozwala na podział"
+
 		first = tab[:int(len(tab) / 2)]
 		last = tab[int(len(tab) / 2):]
 	else:
+		if len(tab[0]) == 1:
+			return "Ilość kolumn nie pozwala na podział"
+
 		first = tab[:, :int(len(tab)/2)]
 		last = tab[:, int(len(tab) / 2):]
 
@@ -95,3 +104,13 @@ def func(tab, kierunek='pion'):
 nprand = np.random.random_integers(1, 10 + 1, (4, 4))
 print(nprand)
 print(func(nprand, 'pion'))
+
+# Zadanie 9
+# Wykorzystaj poznane na zajęciach funkcje biblioteki Numpy i stwórz macierz 5x5, która będzie zawierała kolejne wartości ciągu Fibonacciego.
+w = [0, 1]
+
+for i in range(23):
+	w.append(sum(w[-2:]))
+
+w = np.array(w).reshape((5, 5))
+print(w)
