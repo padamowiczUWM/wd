@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 # Zadanie 1
 # Wczytaj do DataFrame arkusz z narodzinami dzieci w Polsce dostępny w pliku /datasets/imiona.xlsx
 def zadanie1():
@@ -7,6 +8,7 @@ def zadanie1():
 	df = pd.read_excel(xlsx)
 
 	return df
+
 
 # zadanie1()
 
@@ -29,10 +31,15 @@ def zadanie2():
 	print(df[df['Liczba'] > 1000])
 	print(df[df['Imie'] == 'PATRYK'])
 	print(df.groupby(['Rok']).agg({'Liczba': ['sum']}))
-	print(df[(df['Rok'] >= 2000) & (df['Rok'] <= 2005)].groupby(['Rok']).agg({'Liczba':['sum']}))
-	print(df.groupby(['Plec']).agg({'Liczba':['sum']}))
+	print(df[(df['Rok'] >= 2000) & (df['Rok'] <= 2005)].groupby(['Rok']).agg({'Liczba': ['sum']}))
+	print(df.groupby(['Plec']).agg({'Liczba': ['sum']}))
+	print(df.sort_values('Liczba', ascending=False).groupby(['Rok', 'Plec']).nth(0))
+	print(df.groupby(['Plec', 'Imie']).agg({'Liczba': ['sum']}).sort_values(('Liczba', 'sum'), ascending=False).iloc[
+			  [0, 1]])
 
-# zadanie2()
+
+zadanie2()
+
 
 # Zadanie 3
 #
@@ -61,4 +68,4 @@ def zadanie3():
 	df[order_2004].to_csv('zamówienia_2004.csv', header=None, index=False)
 	df[order_2005].to_csv('zamówienia_2005.csv', header=None, index=False)
 
-# zadanie3()
+	# zadanie3()
