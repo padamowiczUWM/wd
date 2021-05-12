@@ -48,26 +48,28 @@ def zadanie3():
 # (scattered) wyświetl wartość 2 wybranych cech tego datasetu. Dla każdego rodzaju kwiatu użyj innego koloru na wykresie.
 # Przykład można znaleźć w galerii wykresów biblioteki matplotlib - link w materiałach matplotlib.
 def zadanie4():
-	data = pd.read_csv('datasets/iris.data',
-					   delimiter=',',
-					   names=[
-						   'sepal length in cm',
-						   'sepal width in cm',
-						   'petal length in cm',
-						   'petal width in cm',
-						   'class'
-					   ])
+	data = pd.read_csv(
+		'datasets/iris.data',
+		delimiter=',',
+		names=[
+			'sepal length in cm',
+			'sepal width in cm',
+			'petal length in cm',
+			'petal width in cm',
+			'class'
+		]
+	)
 
 	colors = []
 	for _class in data['class']:
-		if _class=='Iris-versicolor':
+		if _class == 'Iris-versicolor':
 			colors.append('b')
-		elif _class=='Iris-setosa':
+		elif _class == 'Iris-setosa':
 			colors.append('r')
 		else:
 			colors.append('g')
 
-	data.plot.scatter(x='sepal length in cm',y='petal length in cm', c=colors)
+	data.plot.scatter(x='sepal length in cm', y='petal length in cm', c=colors)
 	plt.show()
 
 
