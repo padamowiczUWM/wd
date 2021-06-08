@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib3
 import pandas as pd
+import json
 
 header = {
 	'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36'}
@@ -11,18 +12,46 @@ header = {
 # Zadanie 1
 # Ze strony https://boardgamegeek.com pobierz linki (znajdź odpowiednie atrybuty) z sekcji 'The Hotness'. Wyświetl te linki.
 def zadanie1():
-	url = "https://boardgamegeek.com/hotness"
+	url = "https://api.geekdo.com/api/hotness?geeksite=boardgame&objecttype=thing&showcount=50"
 
 	data = requests.get(url, headers=header)
-	# print html
-	print(data.text)
 
-	page = html.fromstring(data.text)
-
-
-# 	Javascript not loaded
+	for d in data.json()['items']:
+		print("https://boardgamegeek.com{}".format(d['href']))
 
 # zadanie1()
+
+def zadanie2():
+	from lxml import html
+	import requests
+
+	url = "https://boardgamegeek.com/browse/boardgame"
+	data = requests.get(url)
+
+	page = html.fromstring(data.text)
+	# tabela z grami wszechczasów (tylko pierwsza strona !), pobrana za pomocą XPath
+	xpath = '//*[@id="collection"]//*[@class="table-responsive"]'
+	# można pobierać elementy dokumentu również poprzez funkcje pakietu lxml po id lub klasie
+	table_div = page.get_element_by_id('collection')
+
+	# w dowolnym momencie na elemencie ponownie możemy pobrać elementy przez XPath, najważniejsza jest wiedza o drzewie DOM dokumentu w celu określenia odpowiedniej ścieżki względnej lub bezwzględnej
+	# należy pamiętać (lub sprawdzić) to, że zostanie zwrócona lista odnalezionych elementów dokumentu, stąd index [0] aby zwrócić bezpośrednio ten element a nie całą listę
+	table = table_div.xpath('./*[@class="table-responsive"]/table')[0]
+	# print(table)
+
+	# kolejna informacja jest taka, że większość (ale nie wszystkie) nagłówków jest w formie łącza (znacznik <a>), trzeba więc wyłuskać z niego tekst
+	headers = [label for label in table.xpath('.//td')]
+	labels = []
+	for header in headers:
+		anchor = header.xpath('./a/text()')
+		if len(anchor) > 0:
+			# znowu anchor to lista, pozbywamy się znaków niedrukowalnych
+			labels.append(anchor[0].strip())
+		else:
+			# trzeba pozbyć się znaków niedrukowalnych
+			labels.append(header.text.strip())
+	print(labels)
+# zadanie2()
 
 def zadanie4():
 	url = "https://www.metacritic.com/browse/games/genre/metascore/strategy/pc?view=detailed"
